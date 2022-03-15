@@ -7,4 +7,5 @@ Pre-Build Type Libraries with IDAClang
     - GNU
     - LLVM
 
-## Usage[TODO]
+## Usage
+[Using the IDAClang plugin for IDA Pro](https://hex-rays.com/tutorials/idaclang/)

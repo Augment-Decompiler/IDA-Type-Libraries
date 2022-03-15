@@ -20,18 +20,14 @@ set(CLANG_ARGV "${CLANG_ARGV} -x c++")
 set(CLANG_ARGV "${CLANG_ARGV} -I${MSSTL_SRC}/stl/inc")
 
 
-execute_process(
-    COMMAND mkdir ${OUTDIR}
-    COMMAND mkdir ${OUTDIR}/STL/
-    COMMAND mkdir ${OUTDIR}/STL/MS
-)
+file(MAKE_DIRECTORY ${OUTDIR}/STL/MS)
 
 foreach(target IN LISTS TARGETLIST)
     set(TARGET_CLANG_ARGV "${CLANG_ARGV} -target ${target}")
-    execute_process(
-        COMMAND
-        ${IDACLANG} ${IDACLANG_ARGS} --idaclang-tilname ${OUTDIR}/STL/MS/${target}-${TIL_NAME}.til ${TARGET_CLANG_ARGV} ${INPUT_FILE}
-    )
+    # execute_process(
+    #     COMMAND
+    #     ${IDACLANG} ${IDACLANG_ARGS} --idaclang-tilname ${OUTDIR}/STL/MS/${target}-${TIL_NAME}.til ${TARGET_CLANG_ARGV} ${INPUT_FILE}
+    # )
     message("${IDACLANG} ${IDACLANG_ARGS} --idaclang-tilname ${OUTDIR}/STL/MS/${target}-${TIL_NAME}.til ${TARGET_CLANG_ARGV} ${INPUT_FILE} > ${OUTDIR}/STL/MS/${target}-${TIL_NAME}.log")
     
 endforeach()
